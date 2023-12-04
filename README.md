@@ -1,2 +1,4 @@
 # Smart-Parking-Guidance-System
-UVic ECE 514 Design and Analysis of Communication Networks Course Project
+UVic ECE 514 Design and Analysis of Communication Networks Course Project 2023 fall
+
+
