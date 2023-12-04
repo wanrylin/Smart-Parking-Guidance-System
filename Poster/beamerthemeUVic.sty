@@ -1,0 +1,411 @@
+
+% beamercolorthemeUVic.sty v1.0 (December 03, 2021)
+% by Nicholas Bruce (nsbruce@uvic.ca)
+%
+% based off of the beamercolorthemeuchicago by Raymond A Harrison
+% and the Gemini theme
+% https://github.com/anishathalye/gemini
+%
+% colors, background, typography from the UVic Edge Brand as of Feb. 2021
+
+\ProvidesPackage{beamerthemeUVic}
+
+
+% ====================
+% Dependencies
+% ====================
+\RequirePackage{exscale}
+\RequirePackage{ragged2e}
+\RequirePackage{changepage}
+\RequirePackage{calc}
+\RequirePackage{fontspec}
+\RequirePackage{ifthen}
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+
+% ====================
+% Theme options
+% ====================
+
+
+% This one is default - main bar is dark blue
+\newboolean{doDarkBlue}
+\setboolean{doDarkBlue}{true}
+\newboolean{doBlue}
+\setboolean{doDarkBlue}{false}
+\newboolean{doWhite}
+\setboolean{doWhite}{false}
+
+\DeclareOption{DarkBlue}{\setboolean{doDarkBlue}{true}}
+\DeclareOption{Blue}{\setboolean{doBlue}{true}}
+\DeclareOption{White}{\setboolean{doWhite}{true}}
+\ProcessOptions\relax
+
+% ====================
+% Fonts
+% ====================
+
+% \setromanfont{Verdana}
+% \setsansfont{Open Sans Regular}
+% \setmainfont{Open Sans Regular}
+
+% \setbeamerfont{headline}{family=\sffamily}
+% \setbeamerfont{headline title}{size=\VeryHuge}
+% \setbeamerfont{headline author}{size=\Large}
+% \setbeamerfont{headline institute}{size=\normalsize}
+% \setbeamerfont{block title}{family=\sffamily,size=\Huge}
+% \setbeamerfont{heading}{family=\sffamily,series=\bfseries}
+% \setbeamerfont{caption}{size=\small,series=\itshape}
+% \setbeamerfont{footline}{family=\sffamily,size=\normalsize}
+% \setbeamerfont{normal text}{family=\rmfamily}
+
+\newfontfamily\Raleway[Ligatures=TeX]{Raleway}
+\newfontfamily\Lato[Ligatures=TeX]{Lato}
+
+\usefonttheme{professionalfonts}
+
+\setsansfont{Lato}[
+  UprightFont=*-Light,
+  ItalicFont=*-LightItalic,
+  BoldFont=*-Regular,
+  BoldItalicFont=*-Italic
+]
+
+\setbeamerfont{headline}{family=\Raleway}
+\setbeamerfont{headline title}{size=\LARGE,series=\bfseries}
+\setbeamerfont{headline author}{size=\Large}
+\setbeamerfont{headline institute}{size=\normalsize}
+\setbeamerfont{block title}{family=\Raleway,size=\large,series=\bfseries}
+\setbeamerfont{heading}{family=\Lato,series=\bfseries}
+\setbeamerfont{caption}{size=\small}
+\setbeamerfont{footline}{family=\Raleway,size=\normalsize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% UVic colours
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{UVicBlue}{RGB}{0,94,184}
+\definecolor{UVicYellow}{RGB}{234,170,0}
+\definecolor{UVicRed}{RGB}{210,38,48}
+\definecolor{UVicDarkBlue}{RGB}{0,46,93}
+\definecolor{UVicEngineering}{RGB}{255,117,0}
+\definecolor{UVicTableBlue1}{RGB}{204,230,255}
+\definecolor{UVicTableBlue2}{RGB}{230,243,255}
+\definecolor{lightblue}{RGB}{232, 244, 255}
+\definecolor{lightorange}{RGB}{255, 245, 242}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Other colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{white}{RGB}{255, 255,255}
+\definecolor{black}{RGB}{0, 0, 0}
+\definecolor{neutral}{RGB}{215, 209, 204}
+
+% ====================
+% Theme
+% ====================
+
+% Basic colors
+\setbeamercolor{palette primary}{fg=black,bg=white}
+\setbeamercolor{palette secondary}{fg=black,bg=white}
+\setbeamercolor{palette tertiary}{bg=black,fg=white}
+\setbeamercolor{palette quaternary}{fg=black,bg=white}
+\setbeamercolor{structure}{fg=UVicDarkBlue}
+
+% Headline
+\ifthenelse{\boolean{doDarkBlue}}
+{
+    \setbeamercolor{headline}{fg=white,bg=UVicDarkBlue}
+    \setbeamercolor{headline rule}{bg=UVicDarkBlue}
+}{}
+
+\ifthenelse{\boolean{doBlue}}
+{
+    \setbeamercolor{headline}{fg=white,bg=UVicBlue}
+    \setbeamercolor{headline rule}{bg=UVicBlue}
+}{}
+
+\ifthenelse{\boolean{doWhite}}
+{
+    \setbeamercolor{headline}{fg=UVicDarkBlue,bg=white}
+    \setbeamercolor{headline rule}{bg=white}
+}{}
+
+% Block
+\setbeamercolor{block title}{fg=UVicDarkBlue}
+\setbeamercolor{block separator}{bg=black}
+\setbeamercolor{block body}{fg=black,bg=white}
+
+% Alert Block
+\setbeamercolor{block alerted title}{fg=UVicDarkBlue,bg=lightorange}
+\setbeamercolor{block alerted separator}{bg=black}
+\setbeamercolor{block alerted body}{fg=black, bg=lightorange}
+
+% Example Block
+\setbeamercolor{block example title}{fg=umichblue,bg=lightblue}
+\setbeamercolor{block example separator}{bg=black}
+\setbeamercolor{block example body}{fg=black,bg=lightblue}
+
+% Heading
+\setbeamercolor{heading}{fg=black}
+
+% Itemize
+\setbeamercolor{item}{fg=darkgray}
+
+% Bibliography
+\setbeamercolor{bibliography item}{fg=black}
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography entry title}{fg=black}
+\setbeamercolor{bibliography entry location}{fg=black}
+\setbeamercolor{bibliography entry note}{fg=black}
+\setbeamertemplate{bibliography entry article}{}
+\setbeamertemplate{bibliography entry title}{}
+\setbeamertemplate{bibliography entry location}{}
+\setbeamertemplate{bibliography entry note}{}
+
+
+% ====================
+% Macros
+% ====================
+
+\newcommand{\samelineand}{\qquad}
+
+% ====================
+% Elements
+% ====================
+
+% List
+\makeatletter
+\def\@listi{\leftmargin\leftmarginii
+\topsep 1ex % spacing before
+\parsep 0\p@ \@plus\p@
+\itemsep 0.5ex} % spacing between
+\makeatother
+
+% Itemize
+
+\setbeamertemplate{itemize item}{\raise0.5ex \hbox{\vrule width 0.5ex height 0.5ex}}
+\setbeamertemplate{itemize subitem}{\raise0.3ex \hbox{\vrule width 0.5ex height 0.5ex}}
+\setbeamertemplate{itemize subsubitem}{\raise0.2ex \hbox{\vrule width 0.5ex height 0.5ex}}
+
+% Enumerate
+
+\setbeamertemplate{enumerate item}{\insertenumlabel.}
+\setbeamertemplate{enumerate subitem}{\insertsubenumlabel.}
+\setbeamertemplate{enumerate subsubitem}{\insertsubsubenumlabel.}
+
+% Equation
+\setlength\belowdisplayshortskip{2ex}
+
+% Caption
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}[period]
+\setlength{\abovecaptionskip}{2ex}
+\setlength{\belowcaptionskip}{1ex}
+
+% Bibliography
+\setbeamertemplate{bibliography item}[text]
+
+% Navigation
+\beamertemplatenavigationsymbolsempty
+
+% Tabular
+% \renewcommand{\arraystretch}{1.2}
+% \newcommand{\tableheadrow}{\rowcolor{UVicYellow}}
+% \newcommand{\tableheadcol}[1]{{\bfseries\color{white}#1}}
+% \rowcolors{2}{UVicTableBlue1}{UVicTableBlue2}
+% \AtBeginEnvironment{tabular}{\color{black}}
+
+
+% ====================
+% Components
+% ====================
+
+% Heading
+\newcommand\heading[1]
+{%
+  \par\bigskip
+  {\usebeamerfont{heading}\usebeamercolor[fg]{heading}#1}\par\smallskip
+}
+
+% logo
+\newlength{\logoleftwidth}
+\setlength{\logoleftwidth}{0cm}
+\newlength{\logorightwidth}
+\setlength{\logorightwidth}{0cm}
+\newlength{\maxlogowidth}  % space on both sides set to maxlogowidth to keep title centered
+\setlength{\maxlogowidth}{0cm}
+
+\newcommand{\logoright}[1]{
+  \newcommand{\insertlogoright}{#1}
+  \settowidth{\logorightwidth}{\insertlogoright}
+  \addtolength{\logorightwidth}{10ex}
+  \setlength{\maxlogowidth}{\maxof{\logoleftwidth}{\logorightwidth}}
+}
+\newcommand{\logoleft}[1]{
+  \newcommand{\insertlogoleft}{#1}
+  \settowidth{\logoleftwidth}{\insertlogoleft}
+  \addtolength{\logoleftwidth}{10ex}
+  \setlength{\maxlogowidth}{\maxof{\logoleftwidth}{\logorightwidth}}
+}
+
+% Headline
+
+\setbeamertemplate{headline}
+{
+    \begin{beamercolorbox}{headline}
+        \vskip1ex
+        \centering
+        {\usebeamerfont{headline title}\usebeamercolor[fg]{headline title}\inserttitle\\[0.5ex]}
+        {\usebeamerfont{headline author}\usebeamercolor[fg]{headline author}\insertauthor\\[1ex]}
+        {\usebeamerfont{headline institute}\usebeamercolor[fg]{headline institute}\insertinstitute\\[1ex]}
+        % \vspace{1ex}
+    \end{beamercolorbox}
+    
+    \ifthenelse{\boolean{doBlue}}
+    {
+        \begin{tikzpicture}[remember picture, overlay]
+            % Logo
+            \node [anchor=north east] at ([xshift=-0.417\headheight,yshift=-0.292\headheight]current page.north east) {\includegraphics[height=0.417\headheight]{logos/UVic_logo_BW_reversed.eps}};
+            % Colored edge style    
+            \fill[UVicDarkBlue] (current page.north west) -- ++(0.0158\headheight,0) -- ++(0.867\headheight,-\headheight) -- ++(-0.883\headheight,0) -- cycle;
+            \fill[UVicRed] ($(current page.north west) + (0,-0.333\headheight)$) -- ($(current page.north west) + (0.685\headheight,-\headheight)$) -- ($(current page.north west) + (0,-\headheight)$) -- cycle;
+            \fill[UVicYellow] ($(current page.north west) + (0,-0.457\headheight)$) -- ++(0.472\headheight,-0.543\headheight) -- ($(current page.north west) + (0,-\headheight)$) -- cycle;
+        \end{tikzpicture}
+    }{}
+    
+    \ifthenelse{\boolean{doDarkBlue}}
+    {
+        \begin{tikzpicture}[remember picture, overlay]
+            % Logo
+            \node [anchor=north east] at ([xshift=-1.181\headheight,yshift=-0.292\headheight]current page.north east) {\includegraphics[height=0.417\headheight]{logos/UVic_logo_BW_reversed.eps}};
+            % Colored edge style
+            \fill[UVicYellow](current page.north east) rectangle ($(current page.north east) + (-0.325\headheight, -\headheight)$);
+            \fill[UVicRed]($(current page.north east) + (-0.325\headheight, -\headheight)$) -- ++(0,\headheight) -- ++(-0.125\headheight,0) -- ++(-0.05\headheight,-\headheight) -- cycle;
+            \fill[UVicBlue]($(current page.north east) + (-0.725\headheight, 0)$) -- ++(0,-\headheight) -- ++(-0.2\headheight,0) -- ++(0.05\headheight,\headheight) -- cycle;
+        \end{tikzpicture}
+    }{}
+
+    \ifthenelse{\boolean{doWhite}}
+    {
+        \begin{tikzpicture}[remember picture, overlay]
+            % Logo
+            \node [anchor=north east] at ([xshift=-0.417\headheight,yshift=-0.292\headheight]current page.north east) {\includegraphics[height=0.417\headheight]{logos/UVic_logo_DarkBlue.eps}};
+            % Colored edge style
+            \fill[UVicDarkBlue](current page.north west) rectangle ($(current page.north west) + (0.725\headheight, -\headheight)$);
+            \fill[UVicYellow](current page.north west) rectangle ($(current page.north west) + (0.325\headheight, -\headheight)$);
+            \fill[UVicRed]($(current page.north west) + (0.325\headheight, -\headheight)$) -- ++(0,\headheight) -- ++(0.125\headheight,0) -- ++(0.05\headheight,-\headheight) -- cycle;
+            \fill[UVicBlue]($(current page.north west) + (0.725\headheight, 0)$) -- ++(0,-\headheight) -- ++(0.2\headheight,0) -- ++(-0.05\headheight,\headheight) -- cycle;
+            % Horizontal borders (top and bottom of headline)
+            \draw[UVicDarkBlue](current page.north west) -- (current page.north east);
+            \draw[UVicDarkBlue]($(current page.north west) + (0,-\headheight)$) -- ($(current page.north east) + (0,-\headheight)$);
+        \end{tikzpicture}
+    }{}
+}
+
+
+% Block
+\setbeamertemplate{block begin}
+{
+  \begin{beamercolorbox}[colsep*=0ex,dp=2ex,center]{block title}
+    \vskip0pt
+    \usebeamerfont{block title}\insertblocktitle
+    \vskip-1.25ex
+    \begin{beamercolorbox}[colsep=0.025ex]{block separator}\end{beamercolorbox}
+  \end{beamercolorbox}
+  {\parskip0pt\par}
+  \usebeamerfont{block body}
+  \vskip-0.5ex
+  \begin{beamercolorbox}[colsep*=0ex]{block body}
+  \justifying
+  \setlength{\parskip}{1ex}
+  \vskip-2ex
+}
+\setbeamertemplate{block end}
+{
+  \end{beamercolorbox}
+  \vskip0pt
+  \vspace*{2ex}
+}
+
+% Alert Block
+\setbeamertemplate{block alerted begin}
+{
+  \begin{beamercolorbox}[colsep*=0ex,dp=2ex,center]{block alerted title}
+    \vskip0pt
+    \usebeamerfont{block title}\insertblocktitle
+    \vskip-1.25ex
+    \begin{beamercolorbox}[colsep=0.025ex]{block alerted separator}\end{beamercolorbox}
+  \end{beamercolorbox}
+  {\parskip0pt\par}
+  \usebeamerfont{block body}
+  \vskip-0.5ex
+  \begin{beamercolorbox}[colsep*=0ex]{block alerted body}
+  \justifying
+  \begin{adjustwidth}{1ex}{1ex}
+  \setlength{\parskip}{1ex}
+  \vskip-2ex
+}
+\setbeamertemplate{block alerted end}
+{
+  \end{adjustwidth}
+  \vskip1ex
+  \end{beamercolorbox}
+  \vskip0pt
+  \vspace*{2ex}
+}
+
+% Example Block
+\setbeamertemplate{block example begin}
+{
+  \begin{beamercolorbox}[colsep*=0ex,dp=2ex,center]{block example title}
+    \vskip0pt
+    \usebeamerfont{block title}\insertblocktitle
+    \vskip-1.25ex
+    \begin{beamercolorbox}[colsep=0.025ex]{block example separator}\end{beamercolorbox}
+  \end{beamercolorbox}
+  {\parskip0pt\par}
+  \usebeamerfont{block body}
+  \vskip-0.5ex
+  \begin{beamercolorbox}[colsep*=0ex]{block example body}
+  \justifying
+  \begin{adjustwidth}{1ex}{1ex}
+  \setlength{\parskip}{1ex}
+  \vskip-2ex
+}
+\setbeamertemplate{block example end}
+{
+  \end{adjustwidth}
+  \vskip1ex
+  \end{beamercolorbox}
+  \vskip0pt
+  \vspace*{2ex}
+}
+
+% Footer
+\newcommand{\footercontent}[1]{\newcommand{\insertfootercontent}{#1}}
+
+\setbeamertemplate{footline}{
+  \ifdefined\insertfootercontent
+  \begin{beamercolorbox}[vmode]{headline}
+    \ifbeamercolorempty[bg]{headline rule}{}{
+      \begin{beamercolorbox}[wd=\paperwidth,colsep=0.25ex]{headline rule}\end{beamercolorbox}
+    }
+    \vspace{1.0cm}
+    \hspace{0.05\paperwidth}
+    \usebeamerfont{footline}
+    \centering
+    \insertfootercontent
+    \hspace{0.05\paperwidth}
+    \vspace{1.0cm}
+  \end{beamercolorbox}
+  
+  \ifthenelse{\boolean{doWhite}}
+    {
+        \begin{tikzpicture}[remember picture, overlay]
+            % Horizontal borders (top and bottom of footline)
+            \draw[UVicDarkBlue](current page.south west) -- (current page.south east);
+            \draw[UVicDarkBlue]($(current page.south west) + (0,\footheight)$) -- ($(current page.south east) + (0,\footheight)$);
+        \end{tikzpicture}
+    }{}
+  \else\fi
+}
